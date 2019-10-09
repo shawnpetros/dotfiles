@@ -1,13 +1,38 @@
-# Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
+# --- PATHs
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+export PATH=$HOME/bin:/usr/local/bin:$(npm get prefix)/bin:$(go env GOPATH)/bin:$PATH
 
-# Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+# --- VARS
+ZSH_THEME=""
+POWERLEVEL9K_MODE="nerdfont-complete"
+
+# --- Plugins
+plugins=(
+  git osx zsh-completions colorize cp docker go npm zsh-autosuggestions zsh-syntax-highlighting
+)
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+# --- Source
+source $ZSH/oh-my-zsh.sh
+source ~/.aliases
+source ~/.aws-completion
+source ~/.exports
+source ~/.functions
+source ~/.kubectl-completion
+source ~/.minikube-completion
+
+# --- Evals
+# Evaluate docker-machine vars
+eval $(docker-machine env default)
+# You can use whatever you want as an alias, like for Mondays:
+eval $(thefuck --alias fuck;thefuck --alias dammit)
+
+# --- Additional settings
+
+# Pure prompt
+autoload -U compinit promptinit;compinit && promptinit
+prompt pure
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
@@ -48,3 +73,6 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# z goodness!!!
+. ~/z.sh

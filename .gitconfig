@@ -1,4 +1,13 @@
+[user]
+	signingkey = BA6C6AE4C1E9AB189C643AAFEEC1EF049146B513
+
+[commit]
+	gpgsign = true
+
 [alias]
+
+	# another view
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
@@ -141,6 +150,21 @@
 
 	# Detect copies as well as renames
 	renames = copies
+	tool = opendiff
+
+[difftool "opendiff"]
+
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+
+[merge]
+
+	tool = opendiff
+	log = true
+
+[mergetool "opendiff"]
+
+	cmd = opendiff --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"\; else echo \"$LOCAL\"\; fi)\" \"$REMOTE\"
+	trustExitCode = true
 
 [diff "bin"]
 
@@ -151,11 +175,6 @@
 
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
-
-[merge]
-
-	# Include summaries of merged commits in newly created merge commit messages
-	log = true
 
 [push]
 

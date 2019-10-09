@@ -12,3 +12,13 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+
+# node_modules
+node_modules
+
+# env files
+.env
+*.env
+
+# rest test files
+rest.http

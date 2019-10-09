@@ -51,10 +51,6 @@ alias week='date +%V'
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
-# Google Chrome
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
-
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
@@ -142,7 +138,15 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Reload the shell (i.e. invoke as a login shell)
-alias reload="exec ${SHELL} -l"
+# alias reload="exec ${SHELL} -l"
+# Live reload .zshrc file
+alias reload=". ~/.zshrc"
+
+# Load up the .zshrc
+alias zshconf='code ~/.zshrc'
+
+# Attach docker daemon to minikube
+alias k8s_docker='eval $(minikube docker-env)'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
