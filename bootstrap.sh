@@ -54,6 +54,8 @@ cp z.sh ~
 if [ ! -d  ~/projects ]; then
   echo 'Creating your local development structure. ~/projects'
   mkdir ~/projects
+else
+	echo '"projects" dir already created'
 fi
 
 # ==================================================
