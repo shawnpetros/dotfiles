@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `bootstrap` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # ==================================================
 # Step 1: Get user input
 # ==================================================
@@ -30,7 +36,7 @@ node_modules=(
 for module in "${node_modules[@]}"
 do
   if [[ "$(which npm)" ]]; then
-    npm i -g "$module"
+    sudo npm i -g "$module"
   fi
 done
 
@@ -59,32 +65,27 @@ curl https://raw.githubusercontent.com/canha/golang-tools-install-script/master/
 echo "Installing brew and cask apps"
 source ./brew.sh
 
-cd "$(dirname "${BASH_SOURCE}")";
+echo "Set up spacemacs"
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+
+echo "Set up tmux"
+git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
+
+echo "Set up vim"
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
 
 git pull origin master;
 
-function doIt() {
-	rsync --exclude ".git/" \
-		--exclude ".DS_Store" \
-		--exclude ".macos" \
-		--exclude "bootstrap.sh" \
-		--exclude "brew.sh" \
-		--exclude "LICENSE-MIT.txt" \
-		--exclude "README.md" \
-		-avh --no-perms . ~;
-	source ~/.macos;
-}
-
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt;
-else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
-	fi;
-fi;
-unset doIt;
+rsync --exclude ".git/" \
+  --exclude ".DS_Store" \
+  --exclude ".macos" \
+  --exclude "bootstrap.sh" \
+  --exclude "brew.sh" \
+  --exclude "LICENSE-MIT.txt" \
+  --exclude "README.md" \
+  -avh --no-perms . ~;
 
 # ==================================================
 # Step 3: Github SSH and Global Config

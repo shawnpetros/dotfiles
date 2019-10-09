@@ -26,7 +26,7 @@ brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+brew install gnu-sed
 # Install a modern version of Bash.
 brew install bash
 brew install bash-completion2
@@ -38,15 +38,15 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
 fi;
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
+brew install wget
 
 # Install more recent versions of some macOS tools.
-brew install vim --with-override-system-vi
+brew install vim
 brew install grep
 brew install openssh
 
 # Install font tools.
-brew tap caskroom/versions
+brew tap homebrew/cask-versions
 brew tap homebrew/cask-fonts
 
 # Install other useful binaries.
@@ -70,6 +70,7 @@ brew install openssl
 brew install postgresql
 brew install python
 brew install thefuck
+brew install tmux
 brew install zsh
 brew install zsh-completions
 brew install zsh-syntax-highlighting
