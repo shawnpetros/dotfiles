@@ -146,7 +146,8 @@ alias reload=". ~/.zshrc"
 alias zshconf='code ~/.zshrc'
 
 # Attach docker daemon to minikube
-alias k8s_docker='eval $(minikube docker-env)'
+alias mini='eval $(minikube docker-env)'
+alias dkr='eval $(docker-machine env default)'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'

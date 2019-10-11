@@ -32,9 +32,7 @@ eval $(thefuck --alias dammit)
 # --- Additional settings
 
 # Pure prompt
-autoload -U compinit promptinit;compinit && promptinit
-prompt pure
-
+autoload -U compinit && compinit
 
 # Enable tab completion for `g` by marking it as an alias for `git`
 if type _git &> /dev/null; then
