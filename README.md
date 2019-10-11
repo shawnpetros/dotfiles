@@ -1,10 +1,14 @@
 # ~~Mathias~~ Shawn’s dotfiles
 
-![Screenshot of his shell prompt](https://imgur.com/SQyQwc8)
+![Screenshot of his shell prompt](https://i.imgur.com/SQyQwc8.png)
 
 ## Installation
 
 One liner man!
+
+```bash 
+curl -Lks http://bit.do/spetros-newmac | /bin/bash
+```
 
 **Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!
 
