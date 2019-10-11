@@ -1,0 +1,40 @@
+{
+    "standard.autoFixOnSave": true,
+    "window.zoomLevel": 2,
+    "editor.fontFamily": "Fira Code",
+    "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "editor.tabSize": 2,
+    "editor.renderWhitespace": "all",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "files.exclude": {
+        "node_modules": true
+    },
+    "editor.dragAndDrop": false,
+    "editor.fontSize": 16,
+    "debug.console.fontSize": 14,
+    "terminal.integrated.fontSize": 14,
+    "git.confirmSync": false,
+    "extensions.ignoreRecommendations": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "gitlens.views.repositories.location": "scm",
+    "gitlens.views.fileHistory.location": "scm",
+    "gitlens.views.lineHistory.location": "scm",
+    "gitlens.views.compare.location": "scm",
+    "gitlens.views.search.location": "scm",
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "One Dark Pro",
+    "git.enableSmartCommit": true,
+    "editor.formatOnSave": true,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "emmet.syntaxProfiles": {
+        "js": {
+            "attr_quotes": "single",
+            "self_closing_tag": true
+        }
+    },
+    "emmet.triggerExpansionOnTab": true,
+    "git.autofetch": true
+}

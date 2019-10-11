@@ -28,7 +28,7 @@ node_modules=(
   n
   nodemon
   npm # to upgrade npm in the process
-  pure-prompt
+  # pure-prompt
   standard
   tern
 )
@@ -44,8 +44,8 @@ done
 echo "Installing OH-MY-ZSH, powerlevel9k and others"
 # omzsh
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-# pl9k
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+# pl10k!
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 # auto suggestions bo~i!
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 # z, hop around!
@@ -78,7 +78,36 @@ echo "Set up vim"
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
-git pull origin master;
+echo "VSCode Settings"
+cp init/settings.json ~/Library/Application\ Support/Code/User
+
+code_extensions=(
+  chenxsan.vscode-standardjs
+  christian-kohler.npm-intellisense
+  eamodio.gitlens
+  humao.rest-client
+  mauve.terraform
+  mikestead.dotenv
+  mohsen1.prettify-json
+  ms-azuretools.vscode-docker
+  ms-python.python
+  ms-vscode.csharp
+  ms-vscode.Go
+  numso.prettier-standard-vscode
+  syler.sass-indented
+  WallabyJs.quokka-vscode
+  zhuangtongfa.Material-theme
+)
+
+if [[ -x $(which code) ]]; then
+  echo "VSCode extensions"
+  for ext in "${code_extensions[@]}"
+  do
+    code --install-extension "$ext"
+  done
+else
+	echo "VSCode not installed correctly, install extensions manually."
+fi
 
 rsync --exclude ".git/" \
   --exclude ".DS_Store" \

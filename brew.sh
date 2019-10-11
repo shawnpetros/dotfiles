@@ -89,6 +89,7 @@ brew cask install --appdir="/Applications" spectacle
 brew cask install --appdir="/Applications" slack
 brew cask install --appdir="/Applications" virtualbox
 brew cask install --appdir="/Applications" visual-studio-code
+brew cask install --appdir="/Applications" ngrok
 
 # Remove outdated versions from the cellar.
 brew cleanup

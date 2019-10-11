@@ -4,8 +4,8 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/bin:/usr/local/bin:$(npm get prefix)/bin:$(go env GOPATH)/bin:$PATH
 
 # --- VARS
-ZSH_THEME=""
-POWERLEVEL9K_MODE="nerdfont-complete"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+POWERLEVEL10K_MODE="nerdfont-complete"
 
 # --- Plugins
 plugins=(
@@ -50,6 +50,9 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # z goodness!!!
 . ~/z.sh
