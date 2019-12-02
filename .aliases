@@ -14,6 +14,22 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
+alias gs="g s"
+alias gr="g rb"
+alias gca="g ca"
+alias gpull="g p"
+alias gpush="g push"
+alias gup="g_push_force"
+alias greset="g rl"
+
+function g_push_force() {
+	BRANCH=$(g rev-parse --abbrev-ref HEAD)
+	if [[ "$BRANCH" = "master" ]]; then
+		echo "you can't force push on master, use \"gpush\""
+	else
+		g ftp
+	fi
+}
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`

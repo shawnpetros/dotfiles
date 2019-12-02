@@ -1,21 +1,38 @@
 [user]
 	signingkey = BA6C6AE4C1E9AB189C643AAFEEC1EF049146B513
+	name = Shawn Petros
+	email = spetros@gmrmarketing.com
 
 [commit]
 	gpgsign = true
 
 [alias]
 
+	# reset commit date
+    rd = commit --amend --reset-author
+
+    # reset by switching to master, pulling and deleting merged
+    rl = !git co master && git p && git dm
+
+	# force push
+	ftp = push --force
+
+	# rebase o/m
+	rb = rebase origin/master
+
+	# add and amend
+	aa = !git add . && git commit --amend --reuse-message=HEAD
+
 	# another view
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    # Just symink co for checking out branches
+    co = checkout
 
-  # Just symink co for checking out branches
-  co = checkout
+    # commit current changes and reset HARD...
+    wipe = !git add -A && git commit -nqm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 
-  # View the current working tree status using the short format
+    # View the current working tree status using the short format
 	s = status -s
 
 	# Show the diff between the latest commit and the current state
@@ -25,10 +42,7 @@
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
 	# Pull in remote changes for the current repository and all its submodules
-	p = git pull --recurse-submodules
-
-	# Clone a repository including all submodules
-	c = clone --recursive
+	p = !git pull --recurse-submodules --prune
 
 	# Commit all changes
 	ca = !git add -A && git commit -av
@@ -37,15 +51,12 @@
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
 	# Show verbose output about tags, branches or remotes
-	tags = tag -l
+	tags = tag -lq
 	branches = branch -a
 	remotes = remote -v
 
 	# List aliases
 	aliases = config --get-regexp alias
-
-	# Amend the currently staged files to the latest commit
-	amend = commit --amend --reuse-message=HEAD
 
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
@@ -53,43 +64,12 @@
 	# Interactive rebase with the given number of latest commits
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-	# Remove the old tag with this name and tag the latest commit with it.
-	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
-
-	# Find branches containing commit
-	fb = "!f() { git branch -a --contains $1; }; f"
-
-	# Find tags containing commit
-	ft = "!f() { git describe --always --contains $1; }; f"
-
-	# Find commits by source code
-	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-
-	# Find commits by commit message
-	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
-
-	# Merge GitHub pull request on top of the current branch or,
-	# if a branch name is specified, on top of the specified branch
-	mpr = "!f() { \
-		declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-		declare branch=\"${2:-$currentBranch}\"; \
-		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-			git fetch origin refs/pull/$1/head:pr/$1 && \
-			git checkout -B $branch && \
-			git rebase $branch pr/$1 && \
-			git checkout -B $branch && \
-			git merge pr/$1 && \
-			git branch -D pr/$1 && \
-			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-		fi \
-	}; f"
 
 [apply]
 
