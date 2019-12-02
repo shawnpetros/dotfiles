@@ -1,6 +1,6 @@
 # ~~Mathias~~ Shawn’s dotfiles
 
-![Screenshot of his shell prompt](https://i.imgur.com/SQyQwc8.png)
+![Screenshot of his shell prompt](https://i.imgur.com/c4X32eh.png)
 
 ## Installation
 
