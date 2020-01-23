@@ -1,9 +1,13 @@
 [user]
+
+	# sign using this key, set user and email
 	signingkey = BA6C6AE4C1E9AB189C643AAFEEC1EF049146B513
 	name = Shawn Petros
 	email = spetros@gmrmarketing.com
 
 [commit]
+
+	# sign all commits by default
 	gpgsign = true
 
 [alias]

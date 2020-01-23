@@ -21,7 +21,7 @@ node_modules=(
   eslint
   n
   nodemon
-  npm # to upgrade npm in the process
+  yarn
   # pure-prompt
   standard
   tern

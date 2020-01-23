@@ -57,9 +57,9 @@ brew install rename
 brew install ssh-copy-id
 brew install tree
 
-brew install docker
-brew install docker-machine
-brew install docker-compose
+# brew install docker
+# brew install docker-machine
+# brew install docker-compose
 # might not need this
 # brew install docker-credential-helper
 brew install ispell

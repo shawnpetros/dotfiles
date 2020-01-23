@@ -274,6 +274,10 @@ tmux_conf_copy_to_os_clipboard=false
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
+set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+set -g @plugin 'tmux-plugins/tmux-net-speed'
+set -g @plugin 'samoshkin/tmux-plugin-sysstat'
+
 # increase history size
 set -g history-limit 10000
 

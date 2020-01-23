@@ -24,8 +24,8 @@ alias greset="g rl"
 
 function g_push_force() {
 	BRANCH=$(g rev-parse --abbrev-ref HEAD)
-	if [[ "$BRANCH" = "master" ]]; then
-		echo "you can't force push on master, use \"gpush\""
+	if [[ "$BRANCH" = "master" ]] || [[ "$BRANCH" = "develop" ]]; then
+		echo "you can't force push on base branches, use \"gpush\""
 	else
 		g ftp
 	fi
