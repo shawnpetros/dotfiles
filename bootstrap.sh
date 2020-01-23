@@ -76,21 +76,52 @@ echo "VSCode Settings"
 cp init/settings.json ~/Library/Application\ Support/Code/User
 
 code_extensions=(
+  aaron-bond.better-comments
+  akamud.vscode-theme-onedark
+  andys8.jest-snippets
+  azemoh.one-monokai
   chenxsan.vscode-standardjs
+  chiragpat.tomorrow-and-tomorrow-night-operator-mono-theme
   christian-kohler.npm-intellisense
+  CoenraadS.bracket-pair-colorizer
+  dbaeumer.vscode-eslint
+  dracula-theme.theme-dracula
   eamodio.gitlens
+  ejeldes.one-dark-italic-theme
+  Equinusocio.vsc-community-material-theme
+  Equinusocio.vsc-material-theme
+  equinusocio.vsc-material-theme-icons
+  esbenp.prettier-vscode
+  extr0py.vscode-relative-line-numbers
+  fabiospampinato.vscode-diff
+  firefox-devtools.vscode-firefox-debug
   humao.rest-client
+  joelday.docthis
+  jprestidge.theme-material-theme
+  karigari.chat
   mauve.terraform
   mikestead.dotenv
   mohsen1.prettify-json
   ms-azuretools.vscode-docker
+  ms-mssql.mssql
   ms-python.python
-  ms-vscode.csharp
   ms-vscode.Go
+  ms-vsliveshare.vsliveshare
+  ms-vsliveshare.vsliveshare-audio
   numso.prettier-standard-vscode
+  Orta.vscode-jest
+  patbenatar.advanced-new-file
+  PKief.material-icon-theme
+  sdras.night-owl
+  streetsidesoftware.code-spell-checker
   syler.sass-indented
+  ue.alphabetical-sorter
+  VisualStudioExptTeam.vscodeintellicode
+  vscodevim.vim
   WallabyJs.quokka-vscode
-  zhuangtongfa.Material-theme
+  wesbos.theme-cobalt2
+  wix.vscode-import-cost
+  zhuangtongfa.material-theme
 )
 
 if [[ -x $(which code) ]]; then
