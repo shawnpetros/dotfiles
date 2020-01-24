@@ -15,14 +15,33 @@ if [ -z $OUTFITTED ]; then
   read EMAIL
 fi
 
+# ==================================================
+# Step 2: Install Apps, Tools and dotfiles
+# ==================================================
+
+echo "Installing brew and cask apps"
+source ./brew.sh
+
+# Install OH-MY-ZSH
+echo "Installing OH-MY-ZSH, powerlevel9k and others"
+# omzsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+# pl10k!
+git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# auto suggestions bo~i!
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# z, hop around!
+cp z.sh ~
+
+# Install nvm for zsh
+git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+
 # Install node modules and junk
 # add other global node modules here
 node_modules=(
-  eslint
-  n
-  nodemon
   yarn
-  # pure-prompt
   standard
   tern
 )
@@ -34,17 +53,6 @@ do
   fi
 done
 
-# Install OH-MY-ZSH
-echo "Installing OH-MY-ZSH, powerlevel9k and others"
-# omzsh
-curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-# pl10k!
-git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-# auto suggestions bo~i!
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-# z, hop around!
-cp z.sh ~
-
 if [ ! -d  ~/projects ]; then
   echo 'Creating your local development structure. ~/projects'
   mkdir ~/projects
@@ -52,14 +60,8 @@ else
 	echo '"projects" dir already created'
 fi
 
-# ==================================================
-# Step 2: Install Apps, Tools and dotfiles
-# ==================================================
 echo "Installing GO"
 curl https://raw.githubusercontent.com/canha/golang-tools-install-script/master/goinstall.sh | bash
-
-echo "Installing brew and cask apps"
-source ./brew.sh
 
 echo "Set up spacemacs"
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
@@ -167,6 +169,10 @@ fi
 # Step 4: Mac OS config and .zshrc
 # ==================================================
 source .macos
+
+# change shell
+chsh -s $(which zsh)
+# source .zshrc
 source .zshrc
 
 echo "YOU MADE IT!!! Restart your computer and you'll be good to go. ::AIR GUITAR SOLO::"

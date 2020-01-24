@@ -12,7 +12,7 @@ POWERLEVEL10K_MODE="nerdfont-complete"
 
 # --- Plugins
 plugins=(
-  osx zsh-completions cp docker go npm zsh-autosuggestions zsh-syntax-highlighting
+  osx zsh-completions cp docker go npm zsh-autosuggestions zsh-syntax-highlighting zsh-nvm
 )
 fpath=(/usr/local/share/zsh-completions $fpath)
 
