@@ -20,7 +20,7 @@
   "editor.minimap.showSlider": "always",
   "workbench.startupEditor": "newUntitledFile",
   "extensions.ignoreRecommendations": false,
-  "workbench.colorTheme": "Cobalt2",
+  "workbench.colorTheme": "Community Material Theme High Contrast",
   "workbench.editor.tabCloseButton": "off",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
@@ -44,7 +44,6 @@
   "workbench.editor.enablePreview": true,
   "editor.scrollBeyondLastLine": true,
   "editor.useTabStops": true,
-  "editor.formatOnPaste": true,
   "window.zoomLevel": 0,
   "editor.parameterHints.enabled": false,
   "terminal.integrated.fontFamily": "MesloLGS NF",

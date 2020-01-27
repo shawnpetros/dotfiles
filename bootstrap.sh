@@ -25,7 +25,7 @@ source ./brew.sh
 # Install OH-MY-ZSH
 echo "Installing OH-MY-ZSH, powerlevel9k and others"
 # omzsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # pl10k!
 git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -38,37 +38,15 @@ cp z.sh ~
 # Install nvm for zsh
 git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 
-# Install node modules and junk
-# add other global node modules here
-node_modules=(
-  yarn
-  standard
-  tern
-)
-
-for module in "${node_modules[@]}"
-do
-  if [[ "$(which npm)" ]]; then
-    sudo npm i -g "$module"
-  fi
-done
-
 if [ ! -d  ~/projects ]; then
   echo 'Creating your local development structure. ~/projects'
   mkdir ~/projects
 else
-	echo '"projects" dir already created'
+  echo '"projects" dir already created'
 fi
 
 echo "Installing GO"
 curl https://raw.githubusercontent.com/canha/golang-tools-install-script/master/goinstall.sh | bash
-
-echo "Set up spacemacs"
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-
-echo "Set up tmux"
-git clone https://github.com/gpakosz/.tmux.git ~/.tmux
-ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
 
 echo "Set up vim"
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
@@ -79,42 +57,26 @@ cp init/settings.json ~/Library/Application\ Support/Code/User
 
 code_extensions=(
   aaron-bond.better-comments
-  akamud.vscode-theme-onedark
-  andys8.jest-snippets
-  azemoh.one-monokai
   chenxsan.vscode-standardjs
-  chiragpat.tomorrow-and-tomorrow-night-operator-mono-theme
   christian-kohler.npm-intellisense
   CoenraadS.bracket-pair-colorizer
   dbaeumer.vscode-eslint
-  dracula-theme.theme-dracula
   eamodio.gitlens
-  ejeldes.one-dark-italic-theme
-  Equinusocio.vsc-community-material-theme
-  Equinusocio.vsc-material-theme
-  equinusocio.vsc-material-theme-icons
   esbenp.prettier-vscode
   extr0py.vscode-relative-line-numbers
   fabiospampinato.vscode-diff
-  firefox-devtools.vscode-firefox-debug
   humao.rest-client
   joelday.docthis
-  jprestidge.theme-material-theme
   karigari.chat
   mauve.terraform
   mikestead.dotenv
   mohsen1.prettify-json
   ms-azuretools.vscode-docker
-  ms-mssql.mssql
-  ms-python.python
-  ms-vscode.Go
   ms-vsliveshare.vsliveshare
   ms-vsliveshare.vsliveshare-audio
   numso.prettier-standard-vscode
   Orta.vscode-jest
   patbenatar.advanced-new-file
-  PKief.material-icon-theme
-  sdras.night-owl
   streetsidesoftware.code-spell-checker
   syler.sass-indented
   ue.alphabetical-sorter
@@ -123,7 +85,6 @@ code_extensions=(
   WallabyJs.quokka-vscode
   wesbos.theme-cobalt2
   wix.vscode-import-cost
-  zhuangtongfa.material-theme
 )
 
 if [[ -x $(which code) ]]; then
@@ -133,17 +94,15 @@ if [[ -x $(which code) ]]; then
     code --install-extension "$ext"
   done
 else
-	echo "VSCode not installed correctly, install extensions manually."
+  echo "VSCode not installed correctly, install extensions manually."
 fi
 
-rsync --exclude ".git/" \
-  --exclude ".DS_Store" \
-  --exclude ".macos" \
-  --exclude "bootstrap.sh" \
-  --exclude "brew.sh" \
-  --exclude "LICENSE-MIT.txt" \
-  --exclude "README.md" \
-  -avh --no-perms . ~;
+shopt -s dotglob
+for file in ./dotconfigs/*
+do
+  ln -sfn "$file" ~
+done
+shopt -u dotglob
 
 # ==================================================
 # Step 3: Github SSH and Global Config
@@ -154,25 +113,9 @@ if [ ! -d ~/.ssh ]; then
   ssh-keygen -t rsa -b 4096 -C "$EMAIL"
 fi
 
-if [ -z $OUTFITTED ]; then
-  #set git config values
-  echo "Setting GIT config values..."
-
-  echo "Setting global user name to $NAME"
-  git config --global user.name "$NAME"
-
-  echo "Setting global email to $EMAIL"
-  git config --global user.email "$EMAIL"
-fi
-
 # ==================================================
 # Step 4: Mac OS config and .zshrc
 # ==================================================
 source .macos
-
-# change shell
-chsh -s $(which zsh)
-# source .zshrc
-source .zshrc
 
 echo "YOU MADE IT!!! Restart your computer and you'll be good to go. ::AIR GUITAR SOLO::"

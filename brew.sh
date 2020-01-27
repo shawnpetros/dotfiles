@@ -32,10 +32,10 @@ brew install bash
 brew install bash-completion2
 
 # Switch to using brew-installed bash as default shell
-if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
-  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
-  chsh -s "${BREW_PREFIX}/bin/bash";
-fi;
+# if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
+#   echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
+#   chsh -s "${BREW_PREFIX}/bin/bash";
+# fi;
 
 # Install `wget` with IRI support.
 brew install wget
@@ -65,7 +65,7 @@ brew install tree
 brew install ispell
 brew install kubernetes-cli
 brew install make
-brew install node
+# brew install node
 brew install openssl
 brew install postgresql
 brew install python
@@ -83,6 +83,7 @@ brew cask install --appdir="/Applications" emacs
 brew cask install --appdir="/Applications" font-fira-code
 brew cask install --appdir="/Applications" font-hack-nerd-font
 brew cask install --appdir="/Applications" gpg-suite
+brew cask install --appdir="/Applications" hyper
 brew cask install --appdir="/Applications" iterm2
 brew cask install --appdir="/Applications" minikube
 brew cask install --appdir="/Applications" spectacle

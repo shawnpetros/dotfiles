@@ -26,13 +26,8 @@ source ~/.kubectl-completion
 source ~/.minikube-completion
 
 # --- Evals
-# Evaluate docker-machine vars
-eval $(docker-machine env default)
-
 # thefuck
 eval $(thefuck --alias)
-eval $(thefuck --alias FUCK)
-eval $(thefuck --alias dammit)
 # for thefuck
 alias fuck="fuck --yeah"
 
@@ -42,7 +37,6 @@ alias fuck="fuck --yeah"
 autoload -U compinit && compinit
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-# Enable tab completion for `gg` so we can `git go $1` to co or make $1
 if type _git &> /dev/null; then
 	complete -o default -o nospace -F _git g;
 fi;
@@ -68,13 +62,3 @@ export PATH=$GOPATH/bin:$PATH
 
 # z goodness!!!
 . ~/z.sh
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
