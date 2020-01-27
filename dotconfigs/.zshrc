@@ -14,10 +14,10 @@ POWERLEVEL10K_MODE="nerdfont-complete"
 plugins=(
   osx zsh-completions cp docker go npm zsh-autosuggestions zsh-syntax-highlighting zsh-nvm
 )
-fpath=(/usr/local/share/zsh-completions $fpath)
 
 # --- Source
 source $ZSH/oh-my-zsh.sh
+source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.sh
 source ~/.aliases
 source ~/.aws-completion
 source ~/.exports
@@ -28,8 +28,6 @@ source ~/.minikube-completion
 # --- Evals
 # thefuck
 eval $(thefuck --alias)
-# for thefuck
-alias fuck="fuck --yeah"
 
 # --- Additional settings
 

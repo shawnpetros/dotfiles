@@ -30,6 +30,12 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # pl10k!
 git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 
+# zsh completions
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
+
+# zsh syntax highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 # auto suggestions bo~i!
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 # z, hop around!
@@ -97,12 +103,7 @@ else
   echo "VSCode not installed correctly, install extensions manually."
 fi
 
-shopt -s dotglob
-for file in ./dotconfigs/*
-do
-  ln -sfn "$file" ~
-done
-shopt -u dotglob
+rsync -avh --no-perms ./dotconfigs ~;
 
 # ==================================================
 # Step 3: Github SSH and Global Config

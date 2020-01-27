@@ -22,13 +22,15 @@ alias gpush="g push"
 alias gup="g_push_force"
 alias greset="g rl"
 
+alias fuck="fuck --yeah"
+
 function g_push_force() {
-	BRANCH=$(g rev-parse --abbrev-ref HEAD)
-	if [[ "$BRANCH" = "master" ]] || [[ "$BRANCH" = "develop" ]]; then
-		echo "you can't force push on base branches, use \"gpush\""
-	else
-		g ftp
-	fi
+    BRANCH=$(g rev-parse --abbrev-ref HEAD)
+    if [[ "$BRANCH" = "master" ]] || [[ "$BRANCH" = "develop" ]]; then
+        echo "you can't force push on base branches, use \"gpush\""
+    else
+        g ftp
+    fi
 }
 
 # Detect which `ls` flavor is in use
@@ -163,7 +165,6 @@ alias zshconf='code ~/.zshrc'
 
 # Attach docker daemon to minikube
 alias mini='eval $(minikube docker-env)'
-alias dkr='eval $(docker-machine env default)'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
