@@ -103,7 +103,7 @@ else
   echo "VSCode not installed correctly, install extensions manually."
 fi
 
-rsync -avh --no-perms ./dotconfigs ~;
+rsync -avh --no-perms ./dotconfigs/* ~;
 
 # ==================================================
 # Step 3: Github SSH and Global Config

@@ -17,7 +17,7 @@ plugins=(
 
 # --- Source
 source $ZSH/oh-my-zsh.sh
-source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.sh
+source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.aliases
 source ~/.aws-completion
 source ~/.exports
