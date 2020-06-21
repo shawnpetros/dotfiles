@@ -21,6 +21,7 @@ Plug 'macthecadillac/lightline-gitdiff'
 Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'rmolin88/pomodoro.vim'
+Plug 'jiangmiao/auto-pairs'
 
 " some extra stuff
 Plug 'airblade/vim-gitgutter'
@@ -40,28 +41,20 @@ call plug#end()
 
 " for rigel theme
 set termguicolors
-colorscheme rigel
+colorscheme nord
 
 filetype indent plugin on
 " On pressing tab, insert 2 spaces
 set expandtab
 " show existing tab with 2 spaces width
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set softtabstop=2
 " when indenting with '>', use 2 spaces width
-set shiftwidth=4
+set shiftwidth=2
 " automatically set vim working dir to pwd when vim was called
-set autochdir
+" set autochdir
 " set line numbers relatively
 set number relativenumber
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " remapps for fzf
 map ; :Files<CR>
@@ -72,3 +65,7 @@ map <C-o> :NERDTreeToggle<CR>
 set backspace=indent,eol,start
 
 set laststatus=2
+
+set ttimeout
+set ttimeoutlen=100
+set timeoutlen=3000

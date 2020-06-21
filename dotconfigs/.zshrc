@@ -1,10 +1,16 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # display the computer infos:
-screenfetch
+# screenfetch
 
 # --- PATHs
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$HOME/bin:/usr/local/bin:$(npm get prefix)/bin:$PATH
 
 # --- VARS
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -12,8 +18,12 @@ POWERLEVEL10K_MODE="nerdfont-complete"
 
 # --- Plugins
 plugins=(
-  osx zsh-completions cp docker go npm zsh-autosuggestions zsh-syntax-highlighting zsh-nvm
+  osx zsh-nvm zsh-completions cp docker golang npm zsh-autosuggestions zsh-syntax-highlighting thefuck
 )
+
+# nvm stuff
+# nvm install --lts
+# nvm use --lts
 
 # --- Source
 source $ZSH/oh-my-zsh.sh
@@ -24,10 +34,6 @@ source ~/.exports
 source ~/.functions
 source ~/.kubectl-completion
 source ~/.minikube-completion
-
-# --- Evals
-# thefuck
-eval $(thefuck --alias)
 
 # --- Additional settings
 
@@ -60,3 +66,10 @@ export PATH=$GOPATH/bin:$PATH
 
 # z goodness!!!
 . ~/z.sh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/vault vault
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true

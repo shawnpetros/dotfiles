@@ -20,9 +20,7 @@ alias gca="g ca"
 alias gpull="g p"
 alias gpush="g push"
 alias gup="g_push_force"
-alias greset="g rl"
-
-alias fuck="fuck --yeah"
+alias gfresh="g rl"
 
 function g_push_force() {
     BRANCH=$(g rev-parse --abbrev-ref HEAD)

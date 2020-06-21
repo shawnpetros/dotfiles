@@ -7,8 +7,7 @@ module.exports = {
   config: {
     // default font size in pixels for all tabs
     fontSize: 20,
-    windowSize: [1080, 720],
-    fontFamily: '"Operator Mono", "Inconsolata for Powerline", monospace',
+    fontFamily: '"Operator Mono", "MesloLGS NF", monospace',
     cursorShape: "BLOCK",
     padding: "10px",
     shell: "/bin/zsh"

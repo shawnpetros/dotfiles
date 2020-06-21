@@ -36,3 +36,5 @@ export GPG_TTY=$(tty);
 # Go and junk
 export GOPATH=$HOME/go
 export TERM="xterm-256color"
+
+export PATH=$HOME/bin:/usr/local/bin:$(npm get prefix)/bin:$PATH

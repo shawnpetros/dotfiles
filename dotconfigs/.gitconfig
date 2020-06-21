@@ -16,13 +16,13 @@
     rd = commit --amend --reset-author
 
     # reset by switching to master, pulling and deleting merged
-    rl = !git co master && git p && git dm
-
-	# force push
+    rl = !"f() { git co $1;git p;git dm; }; f"
+    
+    # force push
 	ftp = push --force
 
 	# rebase o/m
-	rb = rebase origin/master
+	rb = !"rb() { git rebase origin/$1; }; rb"
 
 	# add and amend
 	aa = !git add . && git commit --amend --reuse-message=HEAD
@@ -52,7 +52,7 @@
 	ca = !git add -A && git commit -av
 
 	# Switch to a branch, creating it if necessary
-	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+	go = !"f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
 	# Show verbose output about tags, branches or remotes
 	tags = tag -lq
@@ -63,14 +63,14 @@
 	aliases = config --get-regexp alias
 
 	# Credit an author on the latest commit
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+	credit = !"f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
 	# Interactive rebase with the given number of latest commits
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
+	reb = !"r() { git rebase -i HEAD~$1; }; r"
 
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    dm = !"git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
