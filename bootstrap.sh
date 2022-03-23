@@ -58,50 +58,51 @@ echo "Set up vim"
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
-echo "VSCode Settings"
-cp init/settings.json ~/Library/Application\ Support/Code/User
+# maybe this can be done by setting sync
+# echo "VSCode Settings"
+# cp init/settings.json ~/Library/Application\ Support/Code/User
 
-code_extensions=(
-  aaron-bond.better-comments
-  chenxsan.vscode-standardjs
-  christian-kohler.npm-intellisense
-  CoenraadS.bracket-pair-colorizer
-  dbaeumer.vscode-eslint
-  eamodio.gitlens
-  esbenp.prettier-vscode
-  extr0py.vscode-relative-line-numbers
-  fabiospampinato.vscode-diff
-  humao.rest-client
-  joelday.docthis
-  karigari.chat
-  mauve.terraform
-  mikestead.dotenv
-  mohsen1.prettify-json
-  ms-azuretools.vscode-docker
-  ms-vsliveshare.vsliveshare
-  ms-vsliveshare.vsliveshare-audio
-  numso.prettier-standard-vscode
-  Orta.vscode-jest
-  patbenatar.advanced-new-file
-  streetsidesoftware.code-spell-checker
-  syler.sass-indented
-  ue.alphabetical-sorter
-  VisualStudioExptTeam.vscodeintellicode
-  vscodevim.vim
-  WallabyJs.quokka-vscode
-  wesbos.theme-cobalt2
-  wix.vscode-import-cost
-)
+# code_extensions=(
+#   aaron-bond.better-comments
+#   chenxsan.vscode-standardjs
+#   christian-kohler.npm-intellisense
+#   CoenraadS.bracket-pair-colorizer
+#   dbaeumer.vscode-eslint
+#   eamodio.gitlens
+#   esbenp.prettier-vscode
+#   extr0py.vscode-relative-line-numbers
+#   fabiospampinato.vscode-diff
+#   humao.rest-client
+#   joelday.docthis
+#   karigari.chat
+#   mauve.terraform
+#   mikestead.dotenv
+#   mohsen1.prettify-json
+#   ms-azuretools.vscode-docker
+#   ms-vsliveshare.vsliveshare
+#   ms-vsliveshare.vsliveshare-audio
+#   numso.prettier-standard-vscode
+#   Orta.vscode-jest
+#   patbenatar.advanced-new-file
+#   streetsidesoftware.code-spell-checker
+#   syler.sass-indented
+#   ue.alphabetical-sorter
+#   VisualStudioExptTeam.vscodeintellicode
+#   vscodevim.vim
+#   WallabyJs.quokka-vscode
+#   wesbos.theme-cobalt2
+#   wix.vscode-import-cost
+# )
 
-if [[ -x $(which code) ]]; then
-  echo "VSCode extensions"
-  for ext in "${code_extensions[@]}"
-  do
-    code --install-extension "$ext"
-  done
-else
-  echo "VSCode not installed correctly, install extensions manually."
-fi
+# if [[ -x $(which code) ]]; then
+#   echo "VSCode extensions"
+#   for ext in "${code_extensions[@]}"
+#   do
+#     code --install-extension "$ext"
+#   done
+# else
+#   echo "VSCode not installed correctly, install extensions manually."
+# fi
 
 rsync -avh --no-perms ./dotconfigs/* ~;
 

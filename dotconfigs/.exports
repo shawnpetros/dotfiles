@@ -37,4 +37,12 @@ export GPG_TTY=$(tty);
 export GOPATH=$HOME/go
 export TERM="xterm-256color"
 
+# stuff for zsh-nvm
+export NVM_AUTO_USE=true
+export NVM_COMPLETION=true
+export NVM_LAZY_LOAD=true
+
 export PATH=$HOME/bin:/usr/local/bin:$(npm get prefix)/bin:$PATH
+
+# for thefuck
+export THEFUCK_PRIORITY="git_hook_bypass=1100"

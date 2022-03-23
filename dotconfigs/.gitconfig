@@ -1,193 +1,177 @@
-[user]
+# https://git-scm.com/docs/git-config
 
-	# sign using this key, set user and email
-	signingkey = 01D78962CBAA190DCD7921C3C515E90D0296DE9A
-	name = Shawn Petros
-	email = shawn.petros@gmail.com
+[core]
+	autocrlf = input
+	eol = lf
+	fsyncobjectfiles = true
+	ignorecase = false
+	preloadindex = true
+	quotepath = true
+	editor = vim
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
 
-[commit]
-
-	# sign all commits by default
-	gpgsign = true
+[apply]
+	# Detect whitespace errors when applying a patch
+	whitespace = fix
 
 [alias]
-
+	# View the SHA, description, and history graph of the latest 20 commits
+	l = log --pretty=oneline -n 20 --graph
+	# View the current working tree status using the short format
+	s = status -s
+	# Diff
+	d = diff --patch-with-stat
+	# Clone a repository including all submodules
+	c = clone --recursive
+	# Commit all changes
+	ca = !"git add -A && git commit -av"
+	# Switch to a branch, creating it if necessary
+	go = checkout -B
+	# Undo a `git push`
+	undopush = push -f origin HEAD^:master
 	# reset commit date
-    rd = commit --amend --reset-author
-
-    # reset by switching to master, pulling and deleting merged
-    rl = !"f() { git co $1;git p;git dm; }; f"
-    
-    # force push
+	rd = commit --amend --reset-author
+	# reset by switching to master, pulling and deleting merged
+	rl = !"f() { git co $1;git p;git dm; }; f"
+	# force push
 	ftp = push --force
-
 	# rebase o/m
 	rb = !"rb() { git rebase origin/$1; }; rb"
-
 	# add and amend
-	aa = !git add . && git commit --amend --reuse-message=HEAD
-
+	aa = !"git add . && git commit --amend --reuse-message=HEAD"
 	# another view
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
-    # Just symink co for checking out branches
-    co = checkout
-
-    # commit current changes and reset HARD...
-    wipe = !git add -A && git commit -nqm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-
-    # View the current working tree status using the short format
-	s = status -s
-
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
+	# Just symink co for checking out branches
+	co = checkout
+	# commit current changes and reset HARD...
+	wipe = !"git add -A && git commit -nqm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-
 	# Pull in remote changes for the current repository and all its submodules
-	p = !git pull --recurse-submodules --prune
-
-	# Commit all changes
-	ca = !git add -A && git commit -av
-
-	# Switch to a branch, creating it if necessary
-	go = !"f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
-
+	p = !"git pull --recurse-submodules --prune --rebase"
 	# Show verbose output about tags, branches or remotes
 	tags = tag -lq
 	branches = branch -a
 	remotes = remote -v
-
 	# List aliases
 	aliases = config --get-regexp alias
-
 	# Credit an author on the latest commit
 	credit = !"f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-
 	# Interactive rebase with the given number of latest commits
 	reb = !"r() { git rebase -i HEAD~$1; }; r"
-
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
-    dm = !"git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-
+	dm = !"git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
-
-[apply]
-
-	# Detect whitespace errors when applying a patch
-	whitespace = fix
-
-[core]
-
-	# Use custom `.gitignore` and `.gitattributes`
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
-
-	# Treat spaces before tabs and all kinds of trailing whitespace as an error
-	# [default] trailing-space: looks for spaces at the end of a line
-	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-
-	# Make `git rebase` safer on macOS
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
-
-	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-	precomposeunicode = false
-
-	# Speed up commands involving untracked files such as `git status`.
-	# https://git-scm.com/docs/git-update-index#_untracked_cache
-	untrackedCache = true
+	addremove = add -A :/
+	amend = commit --amend
+	ci = commit
+	cim = !"git add -A :/ && git commit -m"
+	co = checkout
+	delete-merged-branches = !"git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	df = diff --patience -M -C
+	ls-changes = !"git status -s > /dev/null && git ls-files -o --exclude-standard && git diff-index --name-only HEAD | sort | uniq"
+	ls-ign = ls-files -io --exclude-standard
+	mg = merge --strategy=recursive --strategy-option=patience --log
+	optimize = gc --aggressive --quiet
+	reporoot = rev-parse --show-toplevel
+	save = !"git addremove && git ci -am 'work-in-progress'"
+	st = status
+	tidy = !"git clean -fdX && find $(git rev-parse --show-toplevel) -type d -empty | grep -v '.git' | xargs rm -rfv"
+	tube = log --decorate=short --no-merges --ignore-missing --simplify-merges --oneline --graph --all
+	undo = reset HEAD~1 --mixed
+	w = whatchanged
 
 [color]
-
-	# Use colors in Git commands that are capable of colored output when
-	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+	# Use colors in Git commands that are capable of colored output when outputting to the terminal
 	ui = auto
+	branch = auto
+	diff = auto
+	grep = auto
+	interactive = auto
+	showbranch = auto
+	status = auto
 
 [color "branch"]
-
 	current = yellow reverse
 	local = yellow
 	remote = green
 
 [color "diff"]
-
 	meta = yellow bold
-	frag = magenta bold # line info
-	old = red # deletions
-	new = green # additions
+	frag = magenta bold
+	old = red bold
+	new = green bold
 
 [color "status"]
-
-	added = yellow
-	changed = green
+	added = green
+	changed = yellow
 	untracked = cyan
 
-[commit]
-
-	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
-
-[diff]
-
-	# Detect copies as well as renames
-	renames = copies
-	tool = opendiff
-
-[difftool "opendiff"]
-
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-
 [merge]
-
-	tool = opendiff
+	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
-[mergetool "opendiff"]
+# Use `origin` as the default remote on the `master` branch in all cases
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
 
-	cmd = opendiff --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"\; else echo \"$LOCAL\"\; fi)\" \"$REMOTE\"
-	trustExitCode = true
+# Use `origin` as the default remote on the `main` branch in all cases
+[branch "main"]
+	remote = origin
+	merge = refs/heads/master
 
-[diff "bin"]
+[fetch]
+	recurseSubmodules = true
 
-	# Use `hexdump` to diff binary files
-	textconv = hexdump -v -C
+[gc]
+	pruneexpire = now
 
-[help]
+# [http]
+# 	sslVerify = true
+# 	sslCAInfo = /Users/srp037/ssl-certs/amfam/ca-bundle.pem
 
-	# Automatically correct and execute mistyped commands
-	autocorrect = 1
+[tar]
+	umask = user
 
-[push]
+[transfer]
+	fsckObjects = true
 
-	# https://git-scm.com/docs/git-config#git-config-pushdefault
-	default = simple
-	# Make `git push` push relevant annotated tags when pushing branches out.
-	followTags = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+
+[user]
+	name = Shawn Petros
+	# email = spetros@amfam.com
+
+[credential]
+	# username = srp037
+
+[pull]
+	rebase = false
+
+[commit]
+	template = ~/.stCommitMsg
 
 # URL shorthands
-
 [url "git@github.com:"]
-
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
 	pushInsteadOf = "git://github.com/"
 
 [url "git://github.com/"]
-
 	insteadOf = "github:"
 
 [url "git@gist.github.com:"]
-
 	insteadOf = "gst:"
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
 
 [url "git://gist.github.com/"]
-
 	insteadOf = "gist:"

@@ -1,8 +1,11 @@
 {
-  "editor.fontFamily": "Operator Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "Fira Code, Operator Mono, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 18,
   "editor.lineHeight": 30,
   "editor.quickSuggestionsDelay": 30,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
   "editor.letterSpacing": 0.5,
   // "workbench.editor.tabSizing": "shrink",
   "html.format.enable": true,
@@ -20,7 +23,7 @@
   "editor.minimap.showSlider": "always",
   "workbench.startupEditor": "newUntitledFile",
   "extensions.ignoreRecommendations": false,
-  "workbench.colorTheme": "Community Material Theme High Contrast",
+  "workbench.colorTheme": "Cobalt2",
   "workbench.editor.tabCloseButton": "off",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
@@ -44,7 +47,7 @@
   "workbench.editor.enablePreview": true,
   "editor.scrollBeyondLastLine": true,
   "editor.useTabStops": true,
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 1,
   "editor.parameterHints.enabled": false,
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "files.exclude": {
@@ -54,7 +57,11 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/.next": true,
-    "node_modules": true
+    "node_modules": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
   },
   "editor.dragAndDrop": false,
   "terminal.integrated.fontSize": 18,
@@ -107,42 +114,24 @@
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "materialTheme.accent": "Bright Teal",
-  "mssql.connections": [
-    {
-      "server": "ITTESTSQL02",
-      "database": "OppTracker-Shawn",
-      "authenticationType": "SqlLogin",
-      "user": "OppTracker",
-      "password": "",
-      "emptyPasswordInput": false,
-      "savePassword": true,
-      "profileName": "DevDB"
-    },
-    {
-      "server": "opp-trackershawn.cu2bcp5iggro.us-east-1.rds.amazonaws.com",
-      "database": "OppTracker-Shawn",
-      "authenticationType": "SqlLogin",
-      "user": "admin",
-      "password": "",
-      "emptyPasswordInput": false,
-      "savePassword": true,
-      "profileName": "RDSDev"
-    },
-    {
-      "server": "localhost",
-      "database": "",
-      "authenticationType": "SqlLogin",
-      "user": "sa",
-      "password": "",
-      "emptyPasswordInput": false,
-      "savePassword": true,
-      "profileName": "dockermssql"
-    }
-  ],
   "diffEditor.ignoreTrimWhitespace": false,
-  "liveshare.account": "spetros@gmrmarketing",
+  "liveshare.account": "shawn.petros@gmail.com",
   "liveshare.guestApprovalRequired": true,
   "cSpell.allowCompoundWords": true,
   "cSpell.checkLimit": 1024,
-  "cSpell.userWords": ["INTs", "destructure", "vals"]
+  "cSpell.userWords": ["INTs", "destructure", "vals"],
+  "editor.tabSize": 2,
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "css.validate": false,
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "javascript"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.lineNumbers": "relative",
+  "sync.autoUpload": true,
+  "sync.quietSync": true,
+  "sync.autoDownload": true,
+  "sync.gist": "96aa306c114d7e742462ed7776d2d299"
 }

@@ -8,7 +8,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'sainnhe/edge'
 
 " rigel theme
-Plug 'Rigellute/rigel'
+" Plug 'Rigellute/rigel'
 
 " nord theme
 Plug 'arcticicestudio/nord-vim'
@@ -25,7 +25,7 @@ Plug 'jiangmiao/auto-pairs'
 
 " some extra stuff
 Plug 'airblade/vim-gitgutter'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
@@ -35,24 +35,30 @@ Plug 'townk/vim-autoclose'
 Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Initialize plugin system
 call plug#end()
 
 " for rigel theme
-set termguicolors
-colorscheme nord
-
+" set termguicolors
+" colorscheme nord
 filetype indent plugin on
+
 " On pressing tab, insert 2 spaces
 set expandtab
+
 " show existing tab with 2 spaces width
 set tabstop=2
 set softtabstop=2
+
 " when indenting with '>', use 2 spaces width
 set shiftwidth=2
+
 " automatically set vim working dir to pwd when vim was called
-" set autochdir
+set autochdir
+
 " set line numbers relatively
 set number relativenumber
 

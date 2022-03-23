@@ -16,33 +16,36 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL10K_MODE="nerdfont-complete"
 
+# need to source before plugins
+source ~/.aliases
+source ~/.exports
+
 # --- Plugins
 plugins=(
-  osx zsh-nvm zsh-completions cp docker golang npm zsh-autosuggestions zsh-syntax-highlighting thefuck
+  macos zsh-nvm zsh-completions cp docker golang npm zsh-autosuggestions zsh-syntax-highlighting thefuck
 )
-
-# nvm stuff
-# nvm install --lts
-# nvm use --lts
 
 # --- Source
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.aliases
-source ~/.aws-completion
-source ~/.exports
 source ~/.functions
+source ~/.aws-completion
 source ~/.kubectl-completion
 source ~/.minikube-completion
 
 # --- Additional settings
 
 # zsh-autosuggestions
-autoload -U compinit && compinit
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
 
 # Enable tab completion for `g` by marking it as an alias for `git`
 if type _git &> /dev/null; then
-	complete -o default -o nospace -F _git g;
+  complete -o default -o nospace -F _git g;
 fi;
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
