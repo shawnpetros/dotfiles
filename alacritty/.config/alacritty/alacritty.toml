@@ -1,0 +1,29 @@
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 16.0
+
+[font.bold]
+# family = "JetBrainsMono Nerd Font"
+family = "Operator-caskabold"
+style = "Bold"
+
+[font.bold_italic]
+family = "Operator-caskabold"
+# family = "MesloLGS Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Operator-caska"
+# family = "MesloLGS Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+# family = "MesloLGS Nerd Font Mono"
+family = "Operator-caska"
+style = "Regular"
