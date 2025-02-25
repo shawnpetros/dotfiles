@@ -7,7 +7,7 @@
 	ignorecase = false
 	preloadindex = true
 	quotepath = true
-	editor = nvim
+	editor = nvim -f
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 
