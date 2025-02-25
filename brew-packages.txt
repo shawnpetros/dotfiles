@@ -1,8 +1,7 @@
-ack
-bash
-bash-completion@2
-findutils
 fzf
+fd
+ripgrep
+lazygit
 git
 git-lfs
 ispell
@@ -12,7 +11,6 @@ node
 openssh
 openssl
 python
-ssh-copy-id
 thefuck
 tmux
 wget
