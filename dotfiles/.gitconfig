@@ -3,13 +3,14 @@
 [core]
 	autocrlf = input
 	eol = lf
-	fsync = true
 	ignorecase = false
 	preloadindex = true
 	quotepath = true
 	editor = nvim -f
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
+	fsync = objects,derived-metadata,reference
+	fsyncMethod = fsync
 
 [apply]
 	# Detect whitespace errors when applying a patch
