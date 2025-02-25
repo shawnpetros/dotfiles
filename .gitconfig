@@ -7,7 +7,7 @@
 	ignorecase = false
 	preloadindex = true
 	quotepath = true
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 
@@ -59,7 +59,7 @@
 	# Credit an author on the latest commit
 	credit = !"f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 	# Interactive rebase with the given number of latest commits
-	reb = !"r() { git rebase -i HEAD~$1; }; r"
+	rbi = !"r() { git rebase -i HEAD~$1; }; r"
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
 	dm = !"git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
@@ -70,17 +70,11 @@
 	ci = commit
 	cim = !"git add -A :/ && git commit -m"
 	co = checkout
-	delete-merged-branches = !"git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 	df = diff --patience -M -C
-	ls-changes = !"git status -s > /dev/null && git ls-files -o --exclude-standard && git diff-index --name-only HEAD | sort | uniq"
-	ls-ign = ls-files -io --exclude-standard
-	mg = merge --strategy=recursive --strategy-option=patience --log
-	optimize = gc --aggressive --quiet
 	reporoot = rev-parse --show-toplevel
 	save = !"git addremove && git ci -am 'work-in-progress'"
 	st = status
 	tidy = !"git clean -fdX && find $(git rev-parse --show-toplevel) -type d -empty | grep -v '.git' | xargs rm -rfv"
-	tube = log --decorate=short --no-merges --ignore-missing --simplify-merges --oneline --graph --all
 	undo = reset HEAD~1 --mixed
 	w = whatchanged
 
@@ -122,17 +116,13 @@
 # Use `origin` as the default remote on the `main` branch in all cases
 [branch "main"]
 	remote = origin
-	merge = refs/heads/master
+	merge = refs/heads/main
 
 [fetch]
 	recurseSubmodules = true
 
 [gc]
 	pruneexpire = now
-
-# [http]
-# 	sslVerify = true
-# 	sslCAInfo = /Users/srp037/ssl-certs/amfam/ca-bundle.pem
 
 [tar]
 	umask = user
