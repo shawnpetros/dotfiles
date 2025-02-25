@@ -158,7 +158,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias reload=". ~/.zshrc"
 
 # Load up the .zshrc
-alias zshconf='code ~/.zshrc'
+alias zshconf='nvim ~/.zshrc'
 
 # Attach docker daemon to minikube
 alias mini='eval $(minikube docker-env)'

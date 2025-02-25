@@ -11,25 +11,15 @@ source ~/.functions
 
 # --- Plugins
 plugins=(
-  macos zsh-nvm zsh-completions cp docker golang npm zsh-autosuggestions zsh-syntax-highlighting thefuck
+  thefuck zsh-nvm zsh-completions zsh-autosuggestions
 )
 
 # --- Source
-source $ZSH/oh-my-zsh.sh
-source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+FPATH+=$ZSH/custom/plugins/zsh-completions/src # zsh completions
+source $ZSH/oh-my-zsh.sh # oh-my-zsh
 # source ~/.aws-completion
 # source ~/.kubectl-completion
 # source ~/.minikube-completion
-
-# --- Additional settings
-
-# zsh-autosuggestions
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
 
 # Enable tab completion for `g` by marking it as an alias for `git`
 if type _git &> /dev/null; then
@@ -51,6 +41,3 @@ complete -W "NSGlobalDomain" defaults;
 
 # z goodness!!!
 . ~/z.sh
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/vault vault
