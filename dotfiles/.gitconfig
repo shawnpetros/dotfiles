@@ -3,7 +3,7 @@
 [core]
 	autocrlf = input
 	eol = lf
-	fsyncobjectfiles = true
+	fsync = true
 	ignorecase = false
 	preloadindex = true
 	quotepath = true
