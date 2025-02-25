@@ -23,12 +23,12 @@ echo "Installing brew and cask apps"
 source ./brew.sh
 
 # Install OH-MY-ZSH
-echo "Installing OH-MY-ZSH, powerlevel9k and others"
+echo "Installing OH-MY-ZSH, oh-my-posh and stuff"
 # omzsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# pl10k!
-git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+# oh-my-posh
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
 # zsh completions
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
@@ -38,73 +38,22 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 # auto suggestions bo~i!
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 # z, hop around!
 cp z.sh ~
 
 # Install nvm for zsh
 git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 
-if [ ! -d  ~/projects ]; then
-  echo 'Creating your local development structure. ~/projects'
-  mkdir ~/projects
+if [ ! -d ~/git_repos ]; then
+  echo 'Creating your local development structure. ~/git_repos'
+  mkdir ~/git_repos
 else
-  echo '"projects" dir already created'
+  echo '"git_repos" dir already created'
 fi
 
 echo "Installing GO"
 curl https://raw.githubusercontent.com/canha/golang-tools-install-script/master/goinstall.sh | bash
-
-echo "Set up vim"
-git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
-sh ~/.vim_runtime/install_awesome_vimrc.sh
-
-# maybe this can be done by setting sync
-# echo "VSCode Settings"
-# cp init/settings.json ~/Library/Application\ Support/Code/User
-
-# code_extensions=(
-#   aaron-bond.better-comments
-#   chenxsan.vscode-standardjs
-#   christian-kohler.npm-intellisense
-#   CoenraadS.bracket-pair-colorizer
-#   dbaeumer.vscode-eslint
-#   eamodio.gitlens
-#   esbenp.prettier-vscode
-#   extr0py.vscode-relative-line-numbers
-#   fabiospampinato.vscode-diff
-#   humao.rest-client
-#   joelday.docthis
-#   karigari.chat
-#   mauve.terraform
-#   mikestead.dotenv
-#   mohsen1.prettify-json
-#   ms-azuretools.vscode-docker
-#   ms-vsliveshare.vsliveshare
-#   ms-vsliveshare.vsliveshare-audio
-#   numso.prettier-standard-vscode
-#   Orta.vscode-jest
-#   patbenatar.advanced-new-file
-#   streetsidesoftware.code-spell-checker
-#   syler.sass-indented
-#   ue.alphabetical-sorter
-#   VisualStudioExptTeam.vscodeintellicode
-#   vscodevim.vim
-#   WallabyJs.quokka-vscode
-#   wesbos.theme-cobalt2
-#   wix.vscode-import-cost
-# )
-
-# if [[ -x $(which code) ]]; then
-#   echo "VSCode extensions"
-#   for ext in "${code_extensions[@]}"
-#   do
-#     code --install-extension "$ext"
-#   done
-# else
-#   echo "VSCode not installed correctly, install extensions manually."
-# fi
-
-rsync -avh --no-perms ./dotconfigs/* ~;
 
 # ==================================================
 # Step 3: Github SSH and Global Config
@@ -118,6 +67,6 @@ fi
 # ==================================================
 # Step 4: Mac OS config and .zshrc
 # ==================================================
-source .macos
+# source .macos
 
 echo "YOU MADE IT!!! Restart your computer and you'll be good to go. ::AIR GUITAR SOLO::"

@@ -1,10 +1,31 @@
 #!/usr/bin/env bash
 
+# exit on errors
+set -e
+
+error_exit() {
+  echo "$1"
+  exit 1
+}
+
 # Check for Homebrew,
 # Install if we don't have it
 if test ! $(which brew); then
-  echo "Installing homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo "Homebrew not found. Installing..."
+  if [[ "$(uname)" == "Darwin" ]]; then
+    # macOS
+    echo "MacOS BOIEEE~~"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
+    # Linux
+    echo "Linux dawgie dawg..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  else
+    error_exit "Unsupported OS brah..."
+  fi
+else
+  echo "Homebrew exists, we updating..."
 fi
 
 # Make sure we’re using the latest Homebrew.
