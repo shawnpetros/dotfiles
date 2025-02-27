@@ -30,7 +30,7 @@ return {
       lspconf.ts_ls.setup({})
       lspconf.rubocop.setup({})
 
-      vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
+      vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Actions", silent = true, noremap = true })
     end
   }
 }

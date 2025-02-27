@@ -11,7 +11,7 @@ vim.opt.cursorline = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
+vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>', { desc = "Turn off search hl" })
 
 -- some qol upgrades
 require("autocmds")
