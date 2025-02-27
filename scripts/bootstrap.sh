@@ -36,11 +36,11 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zs
 # auto suggestions bo~i!
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-# z, hop around!
-cp z.sh ~
-
 # Install nvm for zsh
 git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+
+# z, hop around!
+cp z.sh ~
 
 if [ ! -d ~/git_repos ]; then
   echo 'Creating your local development structure. ~/git_repos'
