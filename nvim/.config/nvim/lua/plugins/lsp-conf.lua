@@ -12,9 +12,7 @@ return {
         ensure_installed = {
           "lua_ls",
           "tailwindcss",
-          "ast_grep",
-          "ts_ls",
-          "rubocop"
+          "ts_ls"
         }
       })
     end
@@ -26,9 +24,7 @@ return {
 
       lspconf.lua_ls.setup({})
       lspconf.tailwindcss.setup({})
-      lspconf.ast_grep.setup({})
       lspconf.ts_ls.setup({})
-      lspconf.rubocop.setup({})
 
       vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Actions", silent = true, noremap = true })
     end
