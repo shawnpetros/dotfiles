@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export XDG_CONFIG_HOME=$HOME/.config
+
 # Make vim the default editor.
 export EDITOR='nvim -f';
 export VISUAL='nvim -f';
