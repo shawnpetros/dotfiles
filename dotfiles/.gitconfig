@@ -7,8 +7,6 @@
 	preloadindex = true
 	quotepath = true
 	editor = nvim -f
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
 	fsync = objects,derived-metadata,reference
 	fsyncMethod = fsync
 
@@ -17,8 +15,6 @@
 	whitespace = fix
 
 [alias]
-	# View the SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph
 	# View the current working tree status using the short format
 	s = status -s
 	# Diff
@@ -29,15 +25,9 @@
 	ca = !"git add -A && git commit -av"
 	# Switch to a branch, creating it if necessary
 	go = checkout -B
-	# Undo a `git push`
-	undopush = push -f origin HEAD^:master
 	# reset commit date
 	rd = commit --amend --reset-author
-	# reset by switching to master, pulling and deleting merged
-	rl = !"f() { git co $1;git p;git dm; }; f"
-	# force push
-	ftp = push --force
-	# rebase o/m
+	# rebase origin/<param>
 	rb = !"rb() { git rebase origin/$1; }; rb"
 	# add and amend
 	aa = !"git add . && git commit --amend --reuse-message=HEAD"
@@ -45,37 +35,21 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	# Just symink co for checking out branches
 	co = checkout
-	# commit current changes and reset HARD...
-	wipe = !"git add -A && git commit -nqm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-	# Pull in remote changes for the current repository and all its submodules
-	p = !"git pull --recurse-submodules --prune --rebase"
 	# Show verbose output about tags, branches or remotes
 	tags = tag -lq
 	branches = branch -a
 	remotes = remote -v
 	# List aliases
 	aliases = config --get-regexp alias
-	# Credit an author on the latest commit
-	credit = !"f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 	# Interactive rebase with the given number of latest commits
 	rbi = !"r() { git rebase -i HEAD~$1; }; r"
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
 	dm = !"git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-	# List contributors with number of commits
-	contributors = shortlog --summary --numbered
-	addremove = add -A :/
 	amend = commit --amend
-	ci = commit
-	cim = !"git add -A :/ && git commit -m"
 	co = checkout
 	df = diff --patience -M -C
-	reporoot = rev-parse --show-toplevel
-	save = !"git addremove && git ci -am 'work-in-progress'"
-	st = status
-	tidy = !"git clean -fdX && find $(git rev-parse --show-toplevel) -type d -empty | grep -v '.git' | xargs rm -rfv"
+	save = !"git add -A :/ && git commit -m 'work-in-progress'"
 	undo = reset HEAD~1 --mixed
 	w = whatchanged
 
@@ -131,38 +105,19 @@
 [transfer]
 	fsckObjects = true
 
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-	process = git-lfs filter-process
-
 [user]
 	name = Shawn Petros
 	email = shawn.petros@gmail.com
-
-[credential]
-	# username = srp037
+	signingkey = /Users/spetros/.ssh/id_rsa.pub
 
 [pull]
 	rebase = false
 
 [commit]
-	template = ~/.stCommitMsg
+	gpgsign = true
 
-# URL shorthands
-[url "git@github.com:"]
-	insteadOf = "gh:"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
+[gpg]
+	format = ssh
 
-[url "git://github.com/"]
-	insteadOf = "github:"
-
-[url "git@gist.github.com:"]
-	insteadOf = "gst:"
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
-
-[url "git://gist.github.com/"]
-	insteadOf = "gist:"
+[push]
+	autoSetupRemote = true
